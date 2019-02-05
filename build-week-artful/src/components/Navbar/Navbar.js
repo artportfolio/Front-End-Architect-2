@@ -14,7 +14,7 @@ const Navbar = props => {
             </NavLink>
             <div className="nav-links">
             
-            {props.isLoggedIn ? <NavLink to="/"><p onClick={() => props.logout()}>Logout</p></NavLink> 
+            {props.isLoggedIn ? <div className="login-signup"><NavLink to={`/user/${props.currentUser}`}><p onClick={() => props.toggleProp()}>{props.currentUser}</p></NavLink><NavLink to="/"><p onClick={() => props.logout()}>Logout</p></NavLink></div>
                 : <div className="login-signup"><NavLink to="/login"><p onClick={() => props.toggleProp()}>Login</p></NavLink>
                     <p> or </p> <NavLink to="/signup"><p onClick={() => props.toggleProp()}>Sign Up</p></NavLink>
                 </div>               
@@ -27,6 +27,7 @@ const Navbar = props => {
 }
 
 const mapStateToProps = state => ({
+    currentUser: state.currentUser,
     isLoggedIn: state.isLoggedIn,
     toggled: state.toggled
 })

@@ -5,6 +5,8 @@ import { Route } from 'react-router-dom';
 import LoginView from './components/Login/Login';
 import HomeView from './views/HomeView';
 import SignUp from './components/Login/SignUp';
+import Navbar from './components/Navbar/Navbar';
+import UserView from './views/UserView';
 
 import './App.css';
 import './components/Navbar/Navbar.css';
@@ -16,11 +18,11 @@ class App extends Component {
     return (
       <div className="App">
 
-          <Route path="/" component={HomeView} />
+          <Navbar />
+          <Route exact path="/" component={HomeView} />
           <Route path="/login" component={LoginView} />
           <Route path="/signup" component={SignUp} />
-
-
+          <Route path="/user/:username" component={UserView} />
 
       </div>
     );

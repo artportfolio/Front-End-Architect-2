@@ -1,16 +1,16 @@
 import React from 'react';
+
 import { connect } from 'react-redux';
 
-import ItemList from '../Items/ItemList';
+class ItemList extends React.Component {
 
-class Home extends React.Component {
+    componentDidMount(){
+
+    }
 
     render(){
         return (
-            <div>
-                <h1>Home</h1>
-                <ItemList />
-            </div>
+            <div className="ItemList">Bunch of photos</div>
         );
     }
 }
@@ -19,6 +19,7 @@ const mapStateToProps = state => ({
     currentUser: state.currentUser,
     isLoggedIn: state.isLoggedIn,
     toggled: state.toggled,
+    photos: state.photos
 })
 
-export default Home;
+export default connect(mapStateToProps, {})(ItemList);

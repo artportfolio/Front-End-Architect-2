@@ -1,7 +1,7 @@
 const initialState = {
+    currentUser: '',
     isLoggedIn: false,
     toggled: false,
-    users: [],
     photos: []
 };
 
@@ -11,6 +11,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoggedIn: true,
+                currentUser: action.payload.username,
                 toggled: !state.toggled
             }
         case 'LOGOUT':
@@ -22,7 +23,6 @@ const reducer = (state = initialState, action) => {
         case 'SIGN_UP':
             return {
                 ...state,
-                isLoggedIn: true,
                 toggled: !state.toggled
             }
         case 'TOGGLE_PROP':
