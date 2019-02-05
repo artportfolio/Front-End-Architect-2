@@ -7,10 +7,11 @@ class SignUp extends React.Component {
     state = {
         user: {
             username: '',
-            fullname: '',
-            userImgUrl: '',
+            password: '',
+            fullName: '',           
             email: '',
-            password: ''
+            userImgUrl: '',
+            
         }
     }
 
@@ -25,7 +26,7 @@ class SignUp extends React.Component {
         }))
     }
 
-    singUp = e => {
+    signUp = e => {
         e.preventDefault();
         this.props.signUp(this.state.user);
         this.props.history.push('/login')
@@ -34,14 +35,16 @@ class SignUp extends React.Component {
     render(){
         return (
             <div className="Login">
-                <Form onSubmit={e => this.singUp(e)}>
+                <Form onSubmit={e => this.signUp(e)}>
                     <h1>Sign Up for artful</h1>
     
                     <Input type="text" 
                             name="username" placeholder="Username..." value={this.state.user.username} 
                             onChange={this.handleChange} required />
-                    <Input type="text" name="fullname" placeholder="Full Name..." 
+                    <Input type="text" name="fullName" placeholder="Full Name..." 
                             value={this.state.user.fullname} onChange={this.handleChange} required />
+                    <Input type="email" name="email" placeholder="Email..." 
+                            value={this.state.user.email} onChange={this.handleChange} required />
                     <Label for="userImgUrl">Choose an image to upload</Label>
                     <Input type="file" accept="image/" id="userImgUrl" name="userImgUrl" placeholder="User image..." onChange={this.handleChange} />
                     <Input type="password" name="password" placeholder="Password..." value={this.state.user.password} onChange={this.handleChange} />

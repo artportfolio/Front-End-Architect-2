@@ -3,7 +3,8 @@ import React from 'react';
 const Item = props => {
     return (
         <div className="Item">
-            Single Photo View
+            <p className="username">{props.user.username}</p>
+            <img src={props.photo.imageUrl} />
         </div>
     );
 }

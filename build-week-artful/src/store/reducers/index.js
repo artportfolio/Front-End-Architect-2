@@ -2,7 +2,8 @@ const initialState = {
     currentUser: '',
     isLoggedIn: false,
     toggled: false,
-    photos: []
+    photos: [],
+    users: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,10 +21,26 @@ const reducer = (state = initialState, action) => {
                 isLoggedIn: false,
                 toggled: !state.toggled
             }
-        case 'SIGN_UP':
+        case 'SIGN_UP_SUCCESS':
             return {
                 ...state,
+                users: action.payload,
                 toggled: !state.toggled
+            }
+        case 'FETCH_PHOTOS_SUCCESS':
+            return {
+                ...state,
+                photos: action.payload
+            }
+        case 'ADD_PHOTOS_SUCCESS':
+            return {
+                ...state,
+                photos: action.payload
+            }
+        case 'FETCH_USERS_SUCCESS':
+            return {
+                ...state,
+                users: action.payload
             }
         case 'TOGGLE_PROP':
             return {
