@@ -17,3 +17,13 @@
     text-decoration: none;
     color: #E8E595;
 }
+
+.Navbar .login-signup {
+    display: flex;
+    color: white;
+    align-items: center;
+}
+
+.Navbar .login-signup p {
+    margin: 0 5px;
+}

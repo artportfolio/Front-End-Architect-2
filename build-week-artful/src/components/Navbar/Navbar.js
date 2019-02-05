@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { toggleProp } from '../../store/actions';
+import { toggleProp, logout } from '../../store/actions';
 
 
 const Navbar = props => {
@@ -14,7 +14,11 @@ const Navbar = props => {
             </NavLink>
             <div className="nav-links">
             
-            {props.isLoggedIn ? <NavLink to="/"><p onClick={() => props.toggleProp()}>Logout</p></NavLink> : <NavLink to="/login"><p onClick={() => props.toggleProp()}>Login</p></NavLink>}
+            {props.isLoggedIn ? <NavLink to="/"><p onClick={() => props.logout()}>Logout</p></NavLink> 
+                : <div className="login-signup"><NavLink to="/login"><p onClick={() => props.toggleProp()}>Login</p></NavLink>
+                    <p> or </p> <NavLink to="/signup"><p onClick={() => props.toggleProp()}>Sign Up</p></NavLink>
+                </div>               
+                }
             
             </div>
 
@@ -27,4 +31,4 @@ const mapStateToProps = state => ({
     toggled: state.toggled
 })
 
-export default connect(mapStateToProps, { toggleProp })(Navbar);
+export default connect(mapStateToProps, { toggleProp, logout })(Navbar);
