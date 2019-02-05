@@ -1,0 +1,13 @@
+.Login {
+    margin: 0 auto;
+    max-width: 600px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.Login form {
+    display: flex;
+    flex-direction: column;
+}
