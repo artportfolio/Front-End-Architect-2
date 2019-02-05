@@ -1,9 +1,13 @@
 import axios from 'axios';
 
-export const login = user => ({
-    type: 'LOGIN',
-    payload: user
-})
+export const login = user => dispatch => {
+    axios
+    .post("https://backend-art.herokuapp.com/api/login", user)
+    .then(response =>
+    dispatch({ type: 'LOGIN_SUCCESS', payload: user })
+    )
+    .catch(error => console.log(error.message));
+}
 
 export const logout = () => {
     console.log('logout');
@@ -15,11 +19,11 @@ export const logout = () => {
 export const signUp = user => dispatch => {
     console.log(user);
     axios
-    .post("https://backend-art.herokuapp.com/api/register", user)
-    .then(response =>
-      dispatch({ type: 'SIGN_UP_SUCCESS', payload: response.data })
-    )
-    .catch(error => console.log(error.message));
+        .post("https://backend-art.herokuapp.com/api/register", user)
+        .then(response =>
+        dispatch({ type: 'SIGN_UP_SUCCESS', payload: response.data })
+        )
+        .catch(error => console.log(error.message));
 }
 
 export const toggleProp = () => {
