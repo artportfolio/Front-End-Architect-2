@@ -3,7 +3,9 @@ const initialState = {
     isLoggedIn: false,
     toggled: false,
     photos: [],
-    users: []
+    users: [{"id":1,"username":"brooks3","password":"$2a$12$UzYfINUnqfZh2n180pBswORvPCIrwHKp3d/MEZ69DaRxoLTYj26UG","fullName":"Brooks Poltl","email":null,"userImgUrl":null}],
+    error: null,
+    fetching: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,9 +29,20 @@ const reducer = (state = initialState, action) => {
                 users: action.payload,
                 toggled: !state.toggled
             }
+        case 'SIGN_UP_FAILURE':
+            return {
+                ...state,
+                error: action.payload
+            }
+        case 'FETCH_PHOTOS_START':
+            return {
+                ...state,
+                fetching: true
+            }
         case 'FETCH_PHOTOS_SUCCESS':
             return {
                 ...state,
+                fetching: false,
                 photos: action.payload
             }
         case 'ADD_PHOTOS_SUCCESS':
@@ -40,7 +53,14 @@ const reducer = (state = initialState, action) => {
         case 'FETCH_USERS_SUCCESS':
             return {
                 ...state,
-                users: action.payload
+                users: action.payload,
+                fetching: false,
+                fetching: false
+            }
+        case 'FETCH_USERS_START':
+            return {
+                ...state,
+                fetching: true
             }
         case 'TOGGLE_PROP':
             return {

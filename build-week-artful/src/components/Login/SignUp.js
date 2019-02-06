@@ -45,8 +45,7 @@ class SignUp extends React.Component {
                             value={this.state.user.fullname} onChange={this.handleChange} required />
                     <Input type="email" name="email" placeholder="Email..." 
                             value={this.state.user.email} onChange={this.handleChange} required />
-                    <Label for="userImgUrl">Choose an image to upload</Label>
-                    <Input type="file" accept="image/" id="userImgUrl" name="userImgUrl" placeholder="User image..." onChange={this.handleChange} />
+                    <Input type="url" accept="image/" name="userImgUrl" placeholder="User image URL..." onChange={this.handleChange} />
                     <Input type="password" name="password" placeholder="Password..." value={this.state.user.password} onChange={this.handleChange} />
                     <Button type="submit">Sign Up</Button>
                 </Form>
@@ -57,7 +56,8 @@ class SignUp extends React.Component {
 
 const mapStateToProps = state => ({
     isLoggedIn: state.isLoggedIn,
-    toggled: state.toggled
+    toggled: state.toggled,
+    error: state.error
 })
 
 export default connect(mapStateToProps, { signUp })(SignUp);
