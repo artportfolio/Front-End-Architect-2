@@ -11,6 +11,10 @@ const Item = props => {
         <div className="Item">
             <p className="username">{props.user.username}</p>
             <img src={props.photo.imageUrl.includes('http') ? props.photo.imageUrl : `https://source.unsplash.com/600x800/?${words[num]}`} alt={props.photo.title} />
+            <div className="bottom-info">
+                <i className="far fa-heart" onClick={() => props.upvote(props.photo.id)} > {props.photo.upvotes}</i> 
+            </div>
+            
             {props.deleteButton && <div className="postButtons"><button onClick={e => props.toggleUpdateForm(e, props.photo.id)}>Update</button><button onClick={(e) => props.deletePost(e, props.photo.id)}>Delete</button></div>}
             {props.photo.id === props.postUpdating &&             
             <Form className="ItemForm" onSubmit={e => props.updatePost(e, props.updatedPost, props.photo.id)} >

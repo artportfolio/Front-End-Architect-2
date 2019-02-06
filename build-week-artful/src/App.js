@@ -13,6 +13,8 @@ import { getUsers, getPhotos,stayLoggedIn } from './store/actions';
 import './App.css';
 import './components/Navbar/Navbar.css';
 import './components/Login/Login.css';
+import './components/Items/Items.css';
+import './components/Home/Home.css';
 
 
 class App extends Component {

@@ -81,6 +81,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 [action.e.target.name]: action.e.target.value 
             }
+        case 'UPVOTE':
+            return {
+                ...state,
+                photos: action.payload
+            }
         default:
             return state;
     }

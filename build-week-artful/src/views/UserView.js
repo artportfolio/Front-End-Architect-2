@@ -6,11 +6,12 @@ import User from '../components/User/User';
 
 class UserView extends React.Component {
     state = {
-        postUpdating: null
+        postUpdating: null,
+        user: {}
     }
 
 
-    componentDidMount(){
+    componentWillMount(){
    
         if(this.props.users.length < 2){
             this.props.getUsers();

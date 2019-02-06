@@ -119,3 +119,10 @@ export const getPhotos = () => dispatch => {
         e
     }
 }
+
+export const upvote = id => {
+    return {
+        type: 'UPVOTE',
+        payload: id
+    }
+}
