@@ -1,3 +1,15 @@
 .Home {
     color: #E8E595;
 }
+
+.Home h1 {
+    font-size: 3.5rem;
+}
+
+.Home .logo {
+    display: block;
+    letter-spacing: 5px;
+    font-family: 'Varela', sans-serif;
+    font-weight: 600;
+    color: #E8E595;
+}
