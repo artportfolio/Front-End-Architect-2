@@ -8,7 +8,7 @@ import SignUp from './components/Login/SignUp';
 import Navbar from './components/Navbar/Navbar';
 import UserView from './views/UserView';
 
-import { getUsers, getPhotos } from './store/actions';
+import { getUsers, getPhotos,stayLoggedIn } from './store/actions';
 
 import './App.css';
 import './components/Navbar/Navbar.css';
@@ -18,6 +18,7 @@ import './components/Login/Login.css';
 class App extends Component {
 
   componentDidMount(){
+    localStorage.getItem('username') && this.props.stayLoggedIn({username: localStorage.getItem('username')});
     this.props.getUsers();
     this.props.getPhotos();
   }
@@ -42,4 +43,4 @@ const mapStateToProps = state => ({
   toggled: state.toggled
 })
 
-export default connect(mapStateToProps, { getUsers, getPhotos })(App);
+export default connect(mapStateToProps, { getUsers, getPhotos, stayLoggedIn })(App);

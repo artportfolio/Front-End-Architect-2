@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getUsers, getPhotos } from '../store/actions';
+import { getUsers, getPhotos, deletePost, updatePost } from '../store/actions';
 import User from '../components/User/User';
 
 class UserView extends React.Component {
+    state = {
+        postUpdating: null
+    }
 
 
     componentDidMount(){
@@ -15,6 +18,24 @@ class UserView extends React.Component {
         }
     }
 
+    deletePost = (e, id) => {
+        e.preventDefault();
+        this.props.deletePost(id);
+    }
+
+    updatePost = (e, post, id) => {
+        e.preventDefault();
+        console.log(post, id);
+        this.props.updatePost(post, id);
+    }
+
+    toggleUpdateForm = (e, id) => {
+        e.preventDefault();
+        this.setState({
+            postUpdating: id
+        })
+    }
+
     render(){
         const user = this.props.users.find(user => user.username === this.props.match.params.username)
         console.log(user);
@@ -23,6 +44,10 @@ class UserView extends React.Component {
                 {user && <User 
                     user={user}
                     userPhotos={this.props.photos.filter(photo => photo.userId === user.id)}
+                    deletePost={this.deletePost}
+                    updatePost={this.updatePost}
+                    postUpdating={this.state.postUpdating}
+                    toggleUpdateForm={this.toggleUpdateForm}
                     /> }
             </div>            
         );
@@ -39,4 +64,4 @@ const mapStateToProps = state => ({
     fetching: state.fetching
 })
 
-export default connect(mapStateToProps, { getUsers, getPhotos })(UserView);
+export default connect(mapStateToProps, { getUsers, getPhotos, deletePost, updatePost })(UserView);
