@@ -1,0 +1,29 @@
+.Navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+    background: rgb(68, 102, 109);
+}
+
+.Navbar .logo {
+    letter-spacing: 5px;
+    font-family: 'Varela', sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    color: #E8E595;
+}
+
+.Navbar a {
+    text-decoration: none;
+    color: #E8E595;
+}
+
+.Navbar .login-signup {
+    display: flex;
+    color: white;
+    align-items: center;
+}
+
+.Navbar .login-signup p {
+    margin: 0 5px;
+}
