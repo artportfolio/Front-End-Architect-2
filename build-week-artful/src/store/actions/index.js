@@ -4,13 +4,23 @@ export const login = user => dispatch => {
     axios
     .post("https://backend-art.herokuapp.com/api/login", user)
     .then(response =>
-    dispatch({ type: 'LOGIN_SUCCESS', payload: user })
+    {
+        window.localStorage.setItem('token', response.data.token);
+        window.localStorage.setItem('username', user.username);
+        return dispatch({ type: 'LOGIN_SUCCESS', payload: user })
+    }
     )
     .catch(error => console.log(error.message));
 }
 
+export const stayLoggedIn = user =>  {
+    console.log(user);
+        return ({ type: 'LOGIN_SUCCESS', payload: user })
+}
+
 export const logout = () => {
-    console.log('logout');
+    window.localStorage.setItem('token', null);
+    window.localStorage.setItem('username', null)
     return {
         type: 'LOGOUT'
     }
@@ -53,11 +63,35 @@ export const getPhotos = () => dispatch => {
   };
 
   export const addPhoto = post => dispatch => {
+    const token = localStorage.getItem('token');
+    console.log(token);
+    const headers = {
+        headers: {
+            authorization: token,
+        },
+    }
     dispatch({ type: 'ADD_PHOTO_START' });
     axios
-      .get("https://backend-art.herokuapp.com/api/posts", post)
-      .then(response =>
+      .post("https://backend-art.herokuapp.com/api/posts", post, headers)
+      .then(response => 
         dispatch({ type: 'ADD_POST_SUCCESS', payload: response.data })
       )
-      .catch(error => dispatch({ type: 'ADD_POST_FAILURE', payload: error }));
+      .catch(error => console.log(error.message));
+  };
+
+  export const deletePost = id => dispatch => {
+    const token = localStorage.getItem('token');
+    console.log(token);
+    const headers = {
+        headers: {
+            authorization: token,
+        },
+    }
+    dispatch({ type: 'DELETE_POST_START' });
+    axios
+      .delete(`https://backend-art.herokuapp.com/api/posts/${id}`, headers)
+      .then(response =>
+        dispatch({ type: 'DELETE_POST_SUCCESS', payload: response.data })
+      )
+      .catch(error => dispatch({ type: 'DELETE_POST_FAILURE', payload: error }));
   };

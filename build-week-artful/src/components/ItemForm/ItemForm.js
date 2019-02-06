@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, Input, Label } from 'reactstrap';
 
+import { addPhoto } from '../../store/actions';
+
 class ItemForm extends React.Component {
     state = {
         newPost: {
             imageUrl: '',
-            upvotes: 0,
-            userId: null,
             description: '',
             postName: ''
         }
@@ -18,30 +18,30 @@ class ItemForm extends React.Component {
         const value = e.target.value;
         this.setState(prevState => ({
             newPost: {
-                ...prevState.user,
+                ...prevState.newPost,
                 [name]: value
             }
         }))
     }
 
-    componentDidMount(){
-        const user = this.props.users.find(u => u.username === this.props.currentUser)
-        this.setState(prevState => ({
-            newPost: {
-                ...prevState.newPost,
-                userId: user.id
-            }
-        }))
-    }
+    // componentDidMount(){
+    //     const user = this.props.users.find(u => u.username === this.props.currentUser)
+    //     this.setState(prevState => ({
+    //         newPost: {
+    //             ...prevState.newPost,
+    //             userId: user.id
+    //         }
+    //     }))
+    // }
 
     addPost = e => {
         e.preventDefault();
-        this.props.addPost(this.state.newPost);
+        this.props.addPhoto(this.state.newPost);
     }
 
     render(){
         return (
-            <Form className="ItemForm" >
+            <Form className="ItemForm" onSubmit={this.addPost} >
                 <h1>Add a photo!</h1>
                 <Input type="url" placeholder="Image URL" name="imageUrl" onChange={this.handleChange} />
                 <Input type="text" placeholder="Title" name="postName" onChange={this.handleChange} />
@@ -58,4 +58,4 @@ const mapStateToProps = state => ({
     toggled: state.toggled
 })
 
-export default connect(mapStateToProps, {  } )(ItemForm);
+export default connect(mapStateToProps, { addPhoto } )(ItemForm);
