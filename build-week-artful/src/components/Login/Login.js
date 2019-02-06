@@ -29,6 +29,7 @@ class LoginView extends React.Component {
     }
 
     render(){
+        console.log(`props: ${this.props}`);
         return (
             <div className="Login">
                 <Form onSubmit={e => this.login(e)}>

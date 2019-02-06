@@ -19,8 +19,8 @@ export const stayLoggedIn = user =>  {
 }
 
 export const logout = () => {
-    window.localStorage.setItem('token', null);
-    window.localStorage.setItem('username', null)
+    window.localStorage.setItem('token', '');
+    window.localStorage.setItem('username', '')
     return {
         type: 'LOGOUT'
     }
