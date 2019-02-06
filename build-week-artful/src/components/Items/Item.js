@@ -1,18 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, Input, Label } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
-import { handleChange } from '../../store/actions';
+import { handleChange, toggleProp, upvote } from '../../store/actions';
 
 const Item = props => {
     const words = ['nature', 'water', 'fire', 'air', 'mountain', 'animal', 'urban', 'landscape', 'canyon', 'flying'];
     const num = Math.floor(Math.random() * 10);
     return (
         <div className="Item">
-            <p className="username">{props.user.username}</p>
+            <Link to={`/user/${props.user.username}`} onClick={props.toggleProp}> <h3 className="username">{props.user.username}</h3></Link>
             <img src={props.photo.imageUrl.includes('http') ? props.photo.imageUrl : `https://source.unsplash.com/600x800/?${words[num]}`} alt={props.photo.title} />
             <div className="bottom-info">
-                <i className="far fa-heart" onClick={() => props.upvote(props.photo.id)} > {props.photo.upvotes}</i> 
+                <i className="far fa-heart" onClick={() => props.upvote(props.photo.id)} > {props.photo.upvotes}</i>
+                <p className="description">{props.photo.description}</p> 
             </div>
             
             {props.deleteButton && <div className="postButtons"><button onClick={e => props.toggleUpdateForm(e, props.photo.id)}>Update</button><button onClick={(e) => props.deletePost(e, props.photo.id)}>Delete</button></div>}
@@ -33,7 +35,9 @@ const mapStateToProps = state => ({
         imageUrl: state.imageUrl,
         description: state.description,
         postName: state.postName
-    }
+    },
+    photos: state.photos,
+    toggled: state.toggled
 })
 
-export default connect(mapStateToProps, { handleChange })(Item);
+export default connect(mapStateToProps, { handleChange, toggleProp, upvote })(Item);

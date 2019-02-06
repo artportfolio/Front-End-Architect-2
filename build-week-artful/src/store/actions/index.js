@@ -27,7 +27,6 @@ export const logout = () => {
 }
 
 export const signUp = user => dispatch => {
-    console.log(user);
     axios
         .post("https://backend-art.herokuapp.com/api/register", user)
         .then(response =>
@@ -64,7 +63,6 @@ export const getPhotos = () => dispatch => {
 
   export const addPhoto = post => dispatch => {
     const token = localStorage.getItem('token');
-    console.log(token);
     const headers = {
         headers: {
             authorization: token,
@@ -81,7 +79,6 @@ export const getPhotos = () => dispatch => {
 
   export const deletePost = id => dispatch => {
     const token = localStorage.getItem('token');
-    console.log(token);
     const headers = {
         headers: {
             authorization: token,
@@ -98,7 +95,6 @@ export const getPhotos = () => dispatch => {
 
   export const updatePost = (post, id) => dispatch => {
     const token = localStorage.getItem('token');
-    console.log(token);
     const headers = {
         headers: {
             authorization: token,
@@ -120,9 +116,13 @@ export const getPhotos = () => dispatch => {
     }
 }
 
-export const upvote = id => {
-    return {
-        type: 'UPVOTE',
-        payload: id
-    }
+export const upvote = id => dispatch => {
+
+    dispatch({ type: 'UPVOTE_POST_START' });
+    axios
+      .put(`https://backend-art.herokuapp.com/api/posts/upvote/${id}`)
+      .then(response =>
+        dispatch({ type: 'UPVOTE_POST_SUCCESS', payload: response.data })
+      )
+      .catch(error => dispatch({ type: 'UPVOTE_POST_FAILURE', payload: error }));
 }

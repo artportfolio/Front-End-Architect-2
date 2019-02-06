@@ -3,7 +3,7 @@ const initialState = {
     isLoggedIn: false,
     toggled: false,
     photos: [],
-    users: [{"id":1,"username":"brooks3","password":"$2a$12$UzYfINUnqfZh2n180pBswORvPCIrwHKp3d/MEZ69DaRxoLTYj26UG","fullName":"Brooks Poltl","email":null,"userImgUrl":null}],
+    users: [],
     error: null,
     fetching: false,
     imageUrl: '',
@@ -84,7 +84,8 @@ const reducer = (state = initialState, action) => {
         case 'UPVOTE':
             return {
                 ...state,
-                photos: action.payload
+                photos: action.payload,
+                toggled: !state.toggled
             }
         default:
             return state;

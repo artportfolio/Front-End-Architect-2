@@ -5,3 +5,37 @@
     border-radius: 6px;
     background: #40627C;
 }
+
+.Item {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.Item .username {
+    font-size: 3rem;
+    text-decoration: underline;
+    color: #FFFCA3;
+    padding: 10px;
+}
+
+.Item img {
+    width: 100%;
+    height: auto;
+}
+
+.Item .bottom-info {
+    background: #527C85;
+    padding: 20px;
+}
+
+@media(max-width: 820px){
+    .ItemList {
+        width: 90%;
+    }
+
+    .Item {
+        width: 95%;
+        margin: 20px auto;
+    }
+}
