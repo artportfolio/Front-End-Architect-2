@@ -9,12 +9,15 @@ class ItemList extends React.Component {
     render(){
         return (
             <div className="ItemList">
-            {this.props.fetching ? <p>Getting Data</p> 
-            :             this.props.photos.map(photo => <Item 
-                key={photo.id + photo.postName} photo={photo} 
-                user={this.props.users.find(user => `${user.id}` === `${photo.userId}`)} 
-                />)}
-
+            {
+                this.props.photos.map(photo => {
+                    const user= this.props.users.find(user => `${user.id}` === `${photo.userId}`);
+                    return (user && <Item 
+                    key={photo.id + photo.postName} photo={photo} 
+                    user={user} 
+                    />);
+                })
+            }
             </div>
         );
     }
