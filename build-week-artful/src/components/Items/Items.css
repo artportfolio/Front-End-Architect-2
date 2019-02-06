@@ -1,0 +1,7 @@
+.ItemList {
+    max-width: 800px;
+    margin: 10px auto;
+    border: 4px solid #263B4A;
+    border-radius: 6px;
+    background: #40627C;
+}
