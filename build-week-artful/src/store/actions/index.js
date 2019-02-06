@@ -51,3 +51,13 @@ export const getPhotos = () => dispatch => {
       )
       .catch(error => dispatch({ type: 'FETCH_USERS_FAILURE', payload: error }));
   };
+
+  export const addPhoto = post => dispatch => {
+    dispatch({ type: 'ADD_PHOTO_START' });
+    axios
+      .get("https://backend-art.herokuapp.com/api/posts", post)
+      .then(response =>
+        dispatch({ type: 'ADD_POST_SUCCESS', payload: response.data })
+      )
+      .catch(error => dispatch({ type: 'ADD_POST_FAILURE', payload: error }));
+  };
