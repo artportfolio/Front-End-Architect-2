@@ -95,3 +95,27 @@ export const getPhotos = () => dispatch => {
       )
       .catch(error => dispatch({ type: 'DELETE_POST_FAILURE', payload: error }));
   };
+
+  export const updatePost = (post, id) => dispatch => {
+    const token = localStorage.getItem('token');
+    console.log(token);
+    const headers = {
+        headers: {
+            authorization: token,
+        },
+    }
+    dispatch({ type: 'UPDATE_POST_START' });
+    axios
+      .put(`https://backend-art.herokuapp.com/api/posts/${id}`, post, headers)
+      .then(response =>
+        dispatch({ type: 'UPDATE_POST_SUCCESS', payload: response.data })
+      )
+      .catch(error => dispatch({ type: 'UPDATE_POST_FAILURE', payload: error }));
+  };
+
+  export const handleChange = e => {
+    return {
+        type: 'HANDLE_CHANGE',
+        e
+    }
+}

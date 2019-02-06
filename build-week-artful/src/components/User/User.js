@@ -12,6 +12,10 @@ const User = props =>{
             {<h1>{props.user.username}'s Posts</h1>}
             {props.currentUser === props.user.username && <ItemForm />}
             {props.userPhotos.map(photo => <Item key={photo.id + photo.postName} photo={photo} 
+            deletePost={props.deletePost}
+            updatePost={props.updatePost}
+            toggleUpdateForm={props.toggleUpdateForm}
+            postUpdating={props.postUpdating}
                     user={props.user} deleteButton={props.currentUser === props.user.username} />)}
             
         </div>            

@@ -5,7 +5,10 @@ const initialState = {
     photos: [],
     users: [{"id":1,"username":"brooks3","password":"$2a$12$UzYfINUnqfZh2n180pBswORvPCIrwHKp3d/MEZ69DaRxoLTYj26UG","fullName":"Brooks Poltl","email":null,"userImgUrl":null}],
     error: null,
-    fetching: false
+    fetching: false,
+    imageUrl: '',
+    description: '',
+    postName: ''
 };
 
 const reducer = (state = initialState, action) => {
@@ -48,14 +51,20 @@ const reducer = (state = initialState, action) => {
         case 'ADD_PHOTOS_SUCCESS':
             return {
                 ...state,
-                photos: action.payload
+                photos: action.payload,
+                toggled: !state.toggled
+            }
+        case 'DELETE_PHOTOS_SUCCESS':
+            return {
+                ...state,
+                photos: action.payload,
+                toggled: !state.toggled
             }
         case 'FETCH_USERS_SUCCESS':
             return {
                 ...state,
                 users: action.payload,
                 fetching: false,
-                fetching: false
             }
         case 'FETCH_USERS_START':
             return {
@@ -66,6 +75,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 toggled: !state.toggled
+            }
+        case 'HANDLE_CHANGE':
+            return {
+                ...state,
+                [action.e.target.name]: action.e.target.value 
             }
         default:
             return state;
