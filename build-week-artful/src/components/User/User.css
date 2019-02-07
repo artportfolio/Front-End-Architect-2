@@ -23,7 +23,7 @@
     margin: 20px;
 }
 
-.UserView .Item .username {
+.UserView .Item .user-info {
     display: none;
 }
 

@@ -11,7 +11,10 @@ const Item = props => {
     const num = Math.floor(Math.random() * 10);
     return (
         <div className="Item">
-            <Link to={`/user/${props.user.username}`} onClick={props.toggleProp}> <h3 className="username">{props.user.username}</h3></Link>
+            <Link to={`/user/${props.user.username}`} onClick={props.toggleProp} className="user-info" > 
+                <img src={props.user.userImgUrl} alt={props.username} className="avatar" />
+                <h3 className="username">{props.user.username}</h3>
+            </Link>
             <Link to={`/posts/${props.photo.id}`}>
             <img src={props.photo.imageUrl.includes('http') ? props.photo.imageUrl : `https://source.unsplash.com/600x800/?${words[num]}`} alt={props.photo.title} />
             </Link>
