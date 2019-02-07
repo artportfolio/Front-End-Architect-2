@@ -21,14 +21,12 @@ class UserView extends React.Component {
     }
 
     deletePost = (e, id) => {
-        e.preventDefault();
         this.props.deletePost(id);
     }
 
     updatePost = (e, post, id) => {
-        e.preventDefault();
-        console.log(post, id);
         this.props.updatePost(post, id);
+        this.props.getPhotos();
     }
 
     toggleUpdateForm = (e, id) => {

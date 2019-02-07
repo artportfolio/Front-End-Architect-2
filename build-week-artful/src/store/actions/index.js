@@ -73,8 +73,14 @@ export const getPhotos = () => dispatch => {
     axios
       .post("https://backend-art.herokuapp.com/api/posts", post, headers)
       .then(response => 
-        dispatch({ type: 'ADD_POST_SUCCESS', payload: response.data })
+        dispatch({ type: 'ADD_PHOTO_SUCCESS', payload: response.data })
       )
+      .then(() =>       
+      axios.get("https://backend-art.herokuapp.com/api/posts")
+          .then(response =>
+          dispatch({ type: 'FETCH_PHOTOS_SUCCESS', payload: response.data })
+          ))
+          .catch(error => dispatch({ type: 'FETCH_PHOTOS_FAILURE', payload: error }))
       .catch(error => console.log(error.message));
   };
 
@@ -90,7 +96,12 @@ export const getPhotos = () => dispatch => {
       .delete(`https://backend-art.herokuapp.com/api/posts/${id}`, headers)
       .then(response =>
         dispatch({ type: 'DELETE_POST_SUCCESS', payload: response.data })
-      )
+      ).then(() =>       
+            axios.get("https://backend-art.herokuapp.com/api/posts")
+                .then(response =>
+                dispatch({ type: 'FETCH_PHOTOS_SUCCESS', payload: response.data })
+                ))
+                .catch(error => dispatch({ type: 'FETCH_PHOTOS_FAILURE', payload: error }))
       .catch(error => dispatch({ type: 'DELETE_POST_FAILURE', payload: error }));
   };
 
@@ -105,8 +116,13 @@ export const getPhotos = () => dispatch => {
     axios
       .put(`https://backend-art.herokuapp.com/api/posts/${id}`, post, headers)
       .then(response =>
-        dispatch({ type: 'UPDATE_POST_SUCCESS', payload: response.data })
-      )
+        dispatch({ type: 'UPDATE_POST_SUCCESS', payload: {post, id} })
+      ).then(() =>       
+      axios.get("https://backend-art.herokuapp.com/api/posts")
+          .then(response =>
+          dispatch({ type: 'FETCH_PHOTOS_SUCCESS', payload: response.data })
+          ))
+          .catch(error => dispatch({ type: 'FETCH_PHOTOS_FAILURE', payload: error }))
       .catch(error => dispatch({ type: 'UPDATE_POST_FAILURE', payload: error }));
   };
 

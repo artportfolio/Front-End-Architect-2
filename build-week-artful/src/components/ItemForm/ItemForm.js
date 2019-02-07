@@ -25,28 +25,25 @@ class ItemForm extends React.Component {
         }))
     }
 
-    // componentDidMount(){
-    //     const user = this.props.users.find(u => u.username === this.props.currentUser)
-    //     this.setState(prevState => ({
-    //         newPost: {
-    //             ...prevState.newPost,
-    //             userId: user.id
-    //         }
-    //     }))
-    // }
-
     addPost = e => {
         e.preventDefault();
         this.props.addPhoto(this.state.newPost);
+        this.setState({
+            newPost: {
+                imageUrl: '',
+                description: '',
+                postName: ''
+            }
+        })
     }
 
     render(){
         return (
             <Form className="ItemForm" onSubmit={this.addPost} >
                 <h1>Add a photo!</h1>
-                <Input type="url" placeholder="Image URL" name="imageUrl" onChange={this.handleChange} />
-                <Input type="text" placeholder="Title" name="postName" onChange={this.handleChange} />
-                <Input className="text-area" type="textarea" placeholder="Description" name="description" onChange={this.handleChange} />
+                <Input type="url" placeholder="Image URL" name="imageUrl" onChange={this.handleChange} value={this.state.newPost.imageUrl} />
+                <Input type="text" placeholder="Title" name="postName" onChange={this.handleChange} value={this.state.newPost.postName} />
+                <Input className="text-area" type="textarea" placeholder="Description" name="description" onChange={this.handleChange} value={this.state.newPost.description}  />
                 <Button type="submit">Add Post</Button>
             </Form>
         );
@@ -56,6 +53,7 @@ class ItemForm extends React.Component {
 const mapStateToProps = state => ({
     currentUser: state.currentUser,
     users: state.users,
+    photos: state.photos,
     toggled: state.toggled
 })
 
