@@ -62,6 +62,7 @@ export const getPhotos = () => dispatch => {
   };
 
   export const addPhoto = post => dispatch => {
+      console.log('adding');
     const token = localStorage.getItem('token');
     const headers = {
         headers: {
@@ -121,8 +122,8 @@ export const upvote = id => dispatch => {
     dispatch({ type: 'UPVOTE_POST_START' });
     axios
       .put(`https://backend-art.herokuapp.com/api/posts/upvote/${id}`)
-      .then(response =>
-        dispatch({ type: 'UPVOTE_POST_SUCCESS', payload: response.data })
+      .then(response => 
+        dispatch({ type: 'UPVOTE_POST_SUCCESS', payload: {photos: response.data, id} })
       )
       .catch(error => dispatch({ type: 'UPVOTE_POST_FAILURE', payload: error }));
 }

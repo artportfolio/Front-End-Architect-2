@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, Input, Label } from 'reactstrap';
+import { Button, Form, Input } from 'reactstrap';
+import { withRouter } from "react-router";
 
 import { addPhoto } from '../../store/actions';
 
@@ -58,4 +59,4 @@ const mapStateToProps = state => ({
     toggled: state.toggled
 })
 
-export default connect(mapStateToProps, { addPhoto } )(ItemForm);
+export default withRouter(connect(mapStateToProps, { addPhoto } )(ItemForm));

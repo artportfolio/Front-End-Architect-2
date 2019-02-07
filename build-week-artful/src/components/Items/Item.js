@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, Input, Label } from 'reactstrap';
+import { Button, Form, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { withRouter } from "react-router";
 
 import { handleChange, toggleProp, upvote } from '../../store/actions';
 
@@ -11,9 +12,11 @@ const Item = props => {
     return (
         <div className="Item">
             <Link to={`/user/${props.user.username}`} onClick={props.toggleProp}> <h3 className="username">{props.user.username}</h3></Link>
+            <Link to={`/posts/${props.photo.id}`}>
             <img src={props.photo.imageUrl.includes('http') ? props.photo.imageUrl : `https://source.unsplash.com/600x800/?${words[num]}`} alt={props.photo.title} />
+            </Link>
             <div className="bottom-info">
-                <i className="far fa-heart" onClick={() => props.upvote(props.photo.id)} > {props.photo.upvotes}</i>
+                <i className={`far fa-heart ${props.likedPosts.includes(props.photo.id) ? 'fas liked' : 'far'}`} onClick={() => props.upvote(props.photo.id)} > {props.photo.upvotes}</i>
                 <p className="description">{props.photo.description}</p> 
             </div>
             
@@ -34,10 +37,9 @@ const mapStateToProps = state => ({
     updatedPost: {
         imageUrl: state.imageUrl,
         description: state.description,
-        postName: state.postName
+        postName: state.postName,
     },
-    photos: state.photos,
-    toggled: state.toggled
+    likedPosts: state.likedPosts
 })
 
-export default connect(mapStateToProps, { handleChange, toggleProp, upvote })(Item);
+export default withRouter(connect(mapStateToProps, { handleChange, toggleProp, upvote })(Item));

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 
 import ItemList from '../Items/ItemList';
 
@@ -19,6 +20,10 @@ const mapStateToProps = state => ({
     currentUser: state.currentUser,
     isLoggedIn: state.isLoggedIn,
     toggled: state.toggled,
+    photos: state.photos,
+    users: state.users,
+    error: state.error,
+    fetching: false,
 })
 
-export default Home;
+export default withRouter(connect(mapStateToProps)(Home));

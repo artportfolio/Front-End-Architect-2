@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 
 import LoginView from './components/Login/Login';
 import HomeView from './views/HomeView';
 import SignUp from './components/Login/SignUp';
 import Navbar from './components/Navbar/Navbar';
 import UserView from './views/UserView';
+import ItemView from './views/ItemView';
 
 import { getUsers, getPhotos,stayLoggedIn } from './store/actions';
 
@@ -15,6 +16,7 @@ import './components/Navbar/Navbar.css';
 import './components/Login/Login.css';
 import './components/Items/Items.css';
 import './components/Home/Home.css';
+import './components/User/User.css';
 
 
 class App extends Component {
@@ -29,12 +31,12 @@ class App extends Component {
     return (
       <div className="App">
 
-          <Navbar />
+        <Navbar />
           <Route exact path="/" component={HomeView} />
           <Route path="/login" component={LoginView} />
           <Route path="/signup" component={SignUp} />
           <Route path="/user/:username" component={UserView} />
-
+          <Route path="/posts/:id" component={ItemView} />
       </div>
     );
   }
@@ -45,4 +47,4 @@ const mapStateToProps = state => ({
   toggled: state.toggled
 })
 
-export default connect(mapStateToProps, { getUsers, getPhotos, stayLoggedIn })(App);
+export default withRouter(connect(mapStateToProps, { getUsers, getPhotos, stayLoggedIn })(App));
