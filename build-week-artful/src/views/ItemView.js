@@ -23,6 +23,8 @@ class ItemView extends React.Component {
             .get(`https://backend-art.herokuapp.com/api/posts/${this.props.match.params.id}`)
             .then(res => this.setState({
                 photo: res.data
+            })).then(() => this.setState({
+                user: this.props.users.find(user => user.id === this.state.photo.userId)
             }))
             .catch(err => console.log(err));
     }
@@ -30,9 +32,9 @@ class ItemView extends React.Component {
     render(){
         return (
             <div className="ItemView">                
-                 {this.state.photo && <Item 
+                 {this.state.photo && this.state.user && <Item 
                         key={this.state.photo.id + this.state.photo.postName} photo={this.state.photo} 
-                        user={this.props.users.find(user => user.id === this.state.photo.userId)}
+                        user={this.state.user}
                         />}
             </div>
         );
