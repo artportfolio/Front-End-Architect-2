@@ -20,6 +20,7 @@ const Item = props => {
             </Link>
             <div className="bottom-info">
                 <i className={`far fa-heart ${props.likedPosts.includes(props.photo.id) ? 'fas liked' : 'far'}`} onClick={() => props.upvote(props.photo.id)} > {props.photo.upvotes}</i>
+                <p className="title">{props.photo.postName}</p>
                 <p className="description">{props.photo.description}</p> 
             </div>
             

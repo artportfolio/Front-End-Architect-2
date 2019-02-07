@@ -44,12 +44,23 @@
     min-height: 100px;
 }
 
+.Item .title {
+    font-size: 2rem;
+    text-decoration: underline;
+}
+
 .Item i:hover {
     transform: scale(1.2);
 }
 
 .Item .liked {
     transform: scale(1.1);
+}
+
+.Item .ItemForm {
+    margin: 20px auto;
+    padding: 20px;
+    width: 100%;
 }
 
 .ItemView {

@@ -46,7 +46,7 @@ class ItemForm extends React.Component {
                 <h1>Add a photo!</h1>
                 <Input type="url" placeholder="Image URL" name="imageUrl" onChange={this.handleChange} />
                 <Input type="text" placeholder="Title" name="postName" onChange={this.handleChange} />
-                <Input type="textarea" placeholder="Description" name="description" onChange={this.handleChange} />
+                <Input className="text-area" type="textarea" placeholder="Description" name="description" onChange={this.handleChange} />
                 <Button type="submit">Add Post</Button>
             </Form>
         );
