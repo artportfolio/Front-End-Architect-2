@@ -92,6 +92,13 @@ const reducer = (state = initialState, action) => {
                 toggled: !state.toggled,
                 likedPosts: [...state.likedPosts, action.payload.id]
             }
+        case 'TOGGLE_UPDATE':
+            return {
+                ...state,
+                imageUrl: action.payload.imageUrl,
+                postName: action.payload.postName,
+                description: action.payload.description
+            }
         default:
             return state;
     }
