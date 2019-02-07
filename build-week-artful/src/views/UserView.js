@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 
 import { getUsers, getPhotos, deletePost, updatePost } from '../store/actions';
 import User from '../components/User/User';
@@ -65,4 +66,4 @@ const mapStateToProps = state => ({
     fetching: state.fetching
 })
 
-export default connect(mapStateToProps, { getUsers, getPhotos, deletePost, updatePost })(UserView);
+export default withRouter(connect(mapStateToProps, { getUsers, getPhotos, deletePost, updatePost })(UserView));

@@ -1,26 +1,26 @@
 import React from 'react';
 
+import { withRouter } from "react-router";
 import { connect } from 'react-redux';
+import { upvote } from '../../store/actions';
 
 import Item from './Item';
 
-class ItemList extends React.Component {
+const ItemList = props => {
 
-    render(){
         return (
             <div className="ItemList">
             {
-                this.props.photos.map(photo => {
-                    const user= this.props.users.find(user => `${user.id}` === `${photo.userId}`);
+                props.photos.map(photo => {
+                    const user= props.users.find(user => `${user.id}` === `${photo.userId}`);
                     return (user && <Item 
                     key={photo.id + photo.postName} photo={photo} 
-                    user={user} 
+                    user={user}
                     />);
                 })
             }
             </div>
         );
-    }
 }
 
 const mapStateToProps = state => ({
@@ -32,4 +32,4 @@ const mapStateToProps = state => ({
     fetching: state.fetching
 })
 
-export default connect(mapStateToProps, { })(ItemList);
+export default withRouter(connect(mapStateToProps, { upvote })(ItemList));

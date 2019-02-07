@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, Input, Label } from 'reactstrap';
+import { Button, Form, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { withRouter } from "react-router";
 
-import { handleChange, toggleProp, upvote } from '../../store/actions';
+import { handleChange, toggleProp } from '../../store/actions';
 
 const Item = props => {
     const words = ['nature', 'water', 'fire', 'air', 'mountain', 'animal', 'urban', 'landscape', 'canyon', 'flying'];
@@ -35,9 +36,7 @@ const mapStateToProps = state => ({
         imageUrl: state.imageUrl,
         description: state.description,
         postName: state.postName
-    },
-    photos: state.photos,
-    toggled: state.toggled
+    }
 })
 
-export default connect(mapStateToProps, { handleChange, toggleProp, upvote })(Item);
+export default withRouter(connect(mapStateToProps, { handleChange, toggleProp })(Item));

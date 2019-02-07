@@ -1,0 +1,22 @@
+.UserView {
+    color: #E8E595;
+}
+
+.UserView h1 {
+    font-size: 3rem;
+    padding: 10px;
+}
+
+.UserView .user-itemlist {
+    display: flex;
+}
+
+.UserView .Item {
+    width: 25%;
+    margin: 20px;
+}
+
+.UserView .Item .username {
+    display: none;
+}
+

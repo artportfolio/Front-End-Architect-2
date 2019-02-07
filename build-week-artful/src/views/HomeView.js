@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 
 import Home from '../components/Home/Home';
 
@@ -15,4 +16,4 @@ const mapStateToProps = state => ({
     toggled: state.toggled
 })
 
-export default connect(mapStateToProps)(HomeView);
+export default withRouter(connect(mapStateToProps)(HomeView));
