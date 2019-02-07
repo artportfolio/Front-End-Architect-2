@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 
-import { getUsers, getPhotos, deletePost, updatePost } from '../store/actions';
+import { getUsers, getPhotos, deletePost, updatePost, toggleUpdate } from '../store/actions';
 import User from '../components/User/User';
 
 class UserView extends React.Component {
@@ -25,15 +25,21 @@ class UserView extends React.Component {
     }
 
     updatePost = (e, post, id) => {
+        e.preventDefault();
         this.props.updatePost(post, id);
         this.props.getPhotos();
+        this.setState({
+            postUpdating: null
+        })
     }
 
-    toggleUpdateForm = (e, id) => {
+    toggleUpdateForm = (e, photo) => {
+        console.log('updating');
         e.preventDefault();
-        this.setState({
-            postUpdating: id
-        })
+        this.setState(prevState => ({
+            postUpdating: photo.id === prevState.postUpdating ? '' : photo.id
+        }))
+        this.props.toggleUpdate(photo);
     }
 
     render(){
@@ -64,4 +70,4 @@ const mapStateToProps = state => ({
     fetching: state.fetching
 })
 
-export default withRouter(connect(mapStateToProps, { getUsers, getPhotos, deletePost, updatePost })(UserView));
+export default withRouter(connect(mapStateToProps, { getUsers, getPhotos, deletePost, updatePost, toggleUpdate })(UserView));

@@ -16,21 +16,22 @@ const Item = props => {
                 <h3 className="username">{props.user.username}</h3>
             </Link>
             <Link to={`/posts/${props.photo.id}`}>
-            <img src={props.photo.imageUrl.includes('http') ? props.photo.imageUrl : `https://source.unsplash.com/600x800/?${words[num]}`} alt={props.photo.title} />
+            <img className="post-photo" src={props.photo.imageUrl.includes('http') ? props.photo.imageUrl : `https://source.unsplash.com/600x800/?${words[num]}`} alt={props.photo.title} />
             </Link>
             <div className="bottom-info">
-                <i className={`far fa-heart ${props.likedPosts.includes(props.photo.id) ? 'fas liked' : 'far'}`} onClick={() => props.upvote(props.photo.id)} > {props.photo.upvotes}</i>
+                <i className={`far fa-heart ${props.likedPosts.includes(props.photo.id) ? 'fas liked' : 'far'}`} 
+                            onClick={() => localStorage.getItem('token') && props.upvote(props.photo.id)} > {props.photo.upvotes}</i>
                 <p className="title">{props.photo.postName}</p>
                 <p className="description">{props.photo.description}</p> 
             </div>
             
-            {props.deleteButton && <div className="postButtons"><button onClick={e => props.toggleUpdateForm(e, props.photo.id)}>Update</button><button onClick={(e) => props.deletePost(e, props.photo.id)}>Delete</button></div>}
+            {props.deleteButton && <div className="postButtons"><button onClick={e => props.toggleUpdateForm(e, props.photo)}>Update</button><button onClick={(e) => props.deletePost(e, props.photo.id)}>Delete</button></div>}
             {props.photo.id === props.postUpdating &&             
             <Form className="ItemForm" onSubmit={e => props.updatePost(e, props.updatedPost, props.photo.id)} >
                 <h1>Update photo!</h1>
-                <Input type="url" placeholder="Image URL" name="imageUrl" onChange={props.handleChange} value={props.updatedPost.imageUrl} />
-                <Input type="text" placeholder="Title" name="postName" onChange={props.handleChange} value={props.updatedPost.postName} />
-                <Input type="textarea" placeholder="Description" name="description" onChange={props.handleChange} value={props.updatedPost.description} />
+                <Input required type="url" placeholder="Image URL" name="imageUrl" onChange={props.handleChange} value={props.updatedPost.imageUrl} />
+                <Input required type="text" placeholder="Title" name="postName" onChange={props.handleChange} value={props.updatedPost.postName} />
+                <Input required type="textarea" placeholder="Description" name="description" onChange={props.handleChange} value={props.updatedPost.description} />
                 <Button type="submit">Update Post</Button>
             </Form>}
         </div>

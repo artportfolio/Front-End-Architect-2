@@ -73,6 +73,7 @@
 
 .ItemView .Item {
     width: 80%;
+    color: #E8E595;
 }
 
 @media(max-width: 820px){

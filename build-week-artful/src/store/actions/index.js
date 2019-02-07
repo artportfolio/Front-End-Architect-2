@@ -126,11 +126,18 @@ export const getPhotos = () => dispatch => {
       .catch(error => dispatch({ type: 'UPDATE_POST_FAILURE', payload: error }));
   };
 
-  export const handleChange = e => {
+export const handleChange = e => {
     return {
         type: 'HANDLE_CHANGE',
         e
     }
+}
+
+export const toggleUpdate = photo => {
+    return ({
+        type: 'TOGGLE_UPDATE',
+        payload: photo
+    })
 }
 
 export const upvote = id => dispatch => {
