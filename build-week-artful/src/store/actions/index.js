@@ -62,6 +62,7 @@ export const getPhotos = () => dispatch => {
   };
 
   export const addPhoto = post => dispatch => {
+      console.log('adding');
     const token = localStorage.getItem('token');
     const headers = {
         headers: {

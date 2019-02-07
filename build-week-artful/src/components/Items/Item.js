@@ -4,7 +4,7 @@ import { Button, Form, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { withRouter } from "react-router";
 
-import { handleChange, toggleProp } from '../../store/actions';
+import { handleChange, toggleProp, upvote } from '../../store/actions';
 
 const Item = props => {
     const words = ['nature', 'water', 'fire', 'air', 'mountain', 'animal', 'urban', 'landscape', 'canyon', 'flying'];
@@ -39,4 +39,4 @@ const mapStateToProps = state => ({
     }
 })
 
-export default withRouter(connect(mapStateToProps, { handleChange, toggleProp })(Item));
+export default withRouter(connect(mapStateToProps, { handleChange, toggleProp, upvote })(Item));

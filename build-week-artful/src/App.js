@@ -24,7 +24,6 @@ class App extends Component {
     localStorage.getItem('username') && this.props.stayLoggedIn({username: localStorage.getItem('username')});
     this.props.getUsers();
     this.props.getPhotos();
-    // window.onpopstate = () => history.push(window.location.pathname);
   }
 
   render() {
