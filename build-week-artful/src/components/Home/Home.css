@@ -12,4 +12,8 @@
     font-family: 'Varela', sans-serif;
     font-weight: 600;
     color: #E8E595;
+    font-size: 8rem;
+    border-top: 1px solid #E8E595;
+    border-bottom: 1px solid #E8E595;
+    margin: 10px 0;
 }
