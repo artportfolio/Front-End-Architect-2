@@ -55,7 +55,7 @@ const reducer = (state = initialState, action) => {
                 photos: action.payload,
                 toggled: !state.toggled
             }
-        case 'DELETE_PHOTOS_SUCCESS':
+        case 'DELETE_POST_SUCCESS':
             return {
                 ...state,
                 photos: action.payload,

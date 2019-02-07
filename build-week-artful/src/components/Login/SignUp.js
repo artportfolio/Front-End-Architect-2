@@ -34,9 +34,9 @@ class SignUp extends React.Component {
 
     render(){
         return (
-            <div className="Login">
+            <div className="SignUp">
                 <Form onSubmit={e => this.signUp(e)}>
-                    <h1>Sign Up for artful</h1>
+                    <h1>Sign Up for <span className="logo">artful</span></h1>
     
                     <Input type="text" 
                             name="username" placeholder="Username..." value={this.state.user.username} 

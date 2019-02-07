@@ -31,9 +31,9 @@ class LoginView extends React.Component {
     render(){
         console.log(`props: ${this.props}`);
         return (
-            <div className="Login">
+            <div className="SignUp">
                 <Form onSubmit={e => this.login(e)}>
-                    <h1>Login to artful</h1>
+                    <h1>Login to <span className="logo">artful</span></h1>
     
                     <Input required type="text" name="username" placeholder="Username..." onChange={this.handleChange} vlaue={this.state.user.username} />
                     <Input required type="password" name="password" placeholder="Password..." onChange={this.handleChange} vlaue={this.state.user.password}/>
