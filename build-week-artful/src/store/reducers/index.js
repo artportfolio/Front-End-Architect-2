@@ -49,16 +49,19 @@ const reducer = (state = initialState, action) => {
                 fetching: false,
                 photos: action.payload
             }
-        case 'ADD_PHOTOS_SUCCESS':
+        case 'ADD_PHOTO_SUCCESS':
             return {
                 ...state,
-                photos: action.payload,
                 toggled: !state.toggled
             }
         case 'DELETE_POST_SUCCESS':
             return {
                 ...state,
-                photos: action.payload,
+                toggled: !state.toggled
+            }
+        case 'UPDATE_POST_SUCCESS':
+            return {
+                ...state,
                 toggled: !state.toggled
             }
         case 'FETCH_USERS_SUCCESS':
