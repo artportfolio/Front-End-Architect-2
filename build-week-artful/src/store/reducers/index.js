@@ -85,7 +85,7 @@ const reducer = (state = initialState, action) => {
         case 'UPVOTE_POST_SUCCESS':
             return {
                 ...state,
-                // photos: action.payload.photos,
+                photos: state.photos.map(x => x.id === action.payload.id ? {...x, upvotes: ++x.upvotes} : x),
                 toggled: !state.toggled,
                 likedPosts: [...state.likedPosts, action.payload.id]
             }
