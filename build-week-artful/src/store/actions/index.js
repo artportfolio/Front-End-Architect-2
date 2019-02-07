@@ -123,7 +123,7 @@ export const upvote = id => dispatch => {
     axios
       .put(`https://backend-art.herokuapp.com/api/posts/upvote/${id}`)
       .then(response =>
-        dispatch({ type: 'UPVOTE_POST_SUCCESS', payload: response.data })
+        dispatch({ type: 'UPVOTE_POST_SUCCESS', payload: {photos: response.data, id} })
       )
       .catch(error => dispatch({ type: 'UPVOTE_POST_FAILURE', payload: error }));
 }

@@ -8,7 +8,8 @@ const initialState = {
     fetching: false,
     imageUrl: '',
     description: '',
-    postName: ''
+    postName: '',
+    likedPosts: [1]
 };
 
 const reducer = (state = initialState, action) => {
@@ -81,11 +82,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 [action.e.target.name]: action.e.target.value 
             }
-        case 'UPVOTE':
+        case 'UPVOTE_POST_SUCCESS':
             return {
                 ...state,
-                photos: action.payload,
-                toggled: !state.toggled
+                // photos: action.payload.photos,
+                toggled: !state.toggled,
+                likedPosts: [...state.likedPosts, action.payload.id]
             }
         default:
             return state;

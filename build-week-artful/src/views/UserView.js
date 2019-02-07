@@ -12,7 +12,7 @@ class UserView extends React.Component {
     }
 
 
-    componentWillMount(){
+    componentDidMount(){
    
         if(this.props.users.length < 2){
             this.props.getUsers();

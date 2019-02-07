@@ -7,6 +7,7 @@ import HomeView from './views/HomeView';
 import SignUp from './components/Login/SignUp';
 import Navbar from './components/Navbar/Navbar';
 import UserView from './views/UserView';
+import ItemView from './views/ItemView';
 
 import { getUsers, getPhotos,stayLoggedIn } from './store/actions';
 
@@ -35,6 +36,7 @@ class App extends Component {
           <Route path="/login" component={LoginView} />
           <Route path="/signup" component={SignUp} />
           <Route path="/user/:username" component={UserView} />
+          <Route path="/posts/:id" component={ItemView} />
       </div>
     );
   }
